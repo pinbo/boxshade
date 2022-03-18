@@ -13,6 +13,8 @@ I made several modifications to make it work better, including:
 A webassembly version can be found here:
 https://junli.netlify.app/apps/boxshade/
 
+If you need a Desktop application, please check out [pyBoxshade](https://github.com/mdbaron42/pyBoxshade), which is more flexable. But the linux version seems buggy. The windows version works great. I modified it to a simple python script (only output RTF file) for command line use. I included it here in the [pyBoxshadeCLI](pyBoxshadeCLI/pyBoxshadeCLI.py) folder.
+
 # Compile
 
 ## compile for local use
