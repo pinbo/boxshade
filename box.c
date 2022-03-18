@@ -157,6 +157,8 @@ static GraphicsDevice *OutDev = NULL;
 static int cons_idx = -1;
 static int ruler_idx = -1;
 
+int outlen2 = 0; // JZ added for cmd line input output width
+
 /*--------------------------------------------------------------------------*/
 /*   user query section section                                             */
 /*--------------------------------------------------------------------------*/
@@ -189,6 +191,9 @@ static char *explain_cl(char *cl)
   printf(C_SEP "unix           output files lines are terminated with LF only\n");
   printf(C_SEP "mac            output files lines are terminated with CR only\n");
   printf(C_SEP "dos            output files lines are terminated with CRLF\n");
+  // JZ added
+  printf(C_SEP "outlen=xxx     output width (default 60)\n");
+  printf(C_SEP "seqnum         print sequence position number\n");
 /*  printf("On unix systems, use the dash (-) as parameter delimiter\n\n"); */
   if (cl != NULL) {
     printf("actual command line: %s\n", cl);
@@ -373,6 +378,17 @@ static void process_command_line(int argc, char **argv)
     numdefflag = TRUE;
   else
     numdefflag = FALSE;
+  // JZ add default output width
+  if (indx(cl, C_SEP "outlen=") > 0) {
+    outlen2 = get_cl_int(cl, C_SEP "outlen=");
+    printf("outlen is %d\n", outlen2);
+  } else
+    outlen = 60;
+    // JZ add default print numbers seqnumflag
+    if (indx(cl, C_SEP "seqnum") > 0) {
+        seqnumflag = TRUE;
+    } else
+        seqnumflag = FALSE;
 }
 
 static BOOL SimGrp(char *template, char *fn, char *explain) {
@@ -438,6 +454,7 @@ static void ask(void)
   hideflag = FALSE;
   masternormal = FALSE;
   fscanf(parfile, "%d%*[^\n]", &outlen);
+  if (outlen2 > 0) outlen = outlen2; // if users set outlen in argument
   getc(parfile);
   Fgets(line_, 256, parfile);
   if (line_[0] == 'Y' || line_[0] == 'y')
@@ -445,10 +462,12 @@ static void ask(void)
   else
     seqnameflag = FALSE;
   Fgets(line_, 256, parfile);
-  if (line_[0] == 'Y' || line_[0] == 'y')
-    seqnumflag = TRUE;
-  else
-    seqnumflag = FALSE;
+  if (!seqnumflag) {
+    if (line_[0] == 'Y' || line_[0] == 'y')
+        seqnumflag = TRUE;
+    else
+        seqnumflag = FALSE;
+  }
   fscanf(parfile, "%d%*[^\n]", &interlines);
   getc(parfile);
   Fgets(line_, 256, parfile);
@@ -1693,7 +1712,7 @@ int main(int argc, char **argv)
 {
   allocate1();
   //JZ: to avoid the crazy init
-  if (argc < 5) {
+  if (argc < 2) {
       explain_cl(NULL);
       exit(0);
   }
