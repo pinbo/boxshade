@@ -1,0 +1,19 @@
+This file is a Nucleic-acid similarity file for use with BOXSHADE.
+Is resembles the GCG  simplify.txt, but similarities contained
+in this file are not automatically set-forming. This means:
+The line 
+I LVM     means that I is similar to L,V and M and also that
+                     L,V,M are similar to I.
+          It does not imply that L is similar to V or to M.
+For achieving this, more lines (the next ones) are necessary.
+Although is seems weird, this feature has been chosen DELIBERATELY
+because I think it could be helpful in some cases.
+Other format requirements are the same as for SIMPLIFY.TXT in the 
+GCG-package.
+..
+A GR
+G AR
+R AG
+C TY
+T CY
+Y CT

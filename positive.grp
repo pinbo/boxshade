@@ -1,0 +1,20 @@
+This file is a Amino-acid grouping file for use with NEWBOX.
+Each line contains a set of amino acids which are considered
+'similar' when calculating the consensus.
+This table was taken from ClustalX v1.3b:
+WEAK groups:
+  These are all the positively scoring groups that occur in
+  the Gonnet Pam250 matrix.
+..
+FYW
+CSA
+ATV
+SAG
+STNK
+STPA
+SGND
+SNDEQK
+NDEQHK
+NEQHRK
+FVLIM
+HFY

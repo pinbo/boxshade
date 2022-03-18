@@ -1,0 +1,19 @@
+This file is a Amino-acid grouping file for use with NEWBOX.
+Each line contains a set of amino acids which are considered
+'similar' when calculating the consensus. The .SIM file is different
+and is used in colouring residues that are "similar" to a single
+consensus residue.
+This table was taken from ClustalW v1.60
+Other format requirements are the same as for SIMPLIFY.TXT in the
+GCG-package.
+..
+ACST
+NT
+EQ
+NQ
+ED
+KRQH
+GN
+NH
+FY
+IVLM

@@ -1,0 +1,70 @@
+This file is a Amino-acid similarity file for use with BOX.
+
+This file is used in colouring residues that are "similar"
+to a single consensus residue.
+
+Similarities contained in this file are not automatically
+set-forming. This means:
+The line
+I LVM     means that I is similar to L,V and M and also that
+		     L,V,M are similar to I.
+	  It does not imply that L is similar to V or to M.
+For achieving this, more lines (the next ones) are necessary.
+Although is seems weird, this feature has been chosen DELIBERATELY
+because I think it could be helpful in some cases.
+
+This table was taken from ClustalX v1.3b:
+WEAK groups:
+  These are all the positively scoring groups that occur in
+  the Gonnet Pam250 matrix
+..
+F YW
+Y WF
+W FY
+C SA
+S AC
+A CS
+A TV
+T VA
+V AT
+S AG
+A GS
+G SA
+S TNK
+T NKS
+N KST
+K STN
+S TPA
+T PAS
+P AST
+A STP
+S GND
+G NDS
+N DSG
+D SGN
+S NDEQK
+N DEQKS
+D EQKSN
+E QKSND
+Q KSNDE
+K SNDEQ
+N DEQHK
+D EQHKN
+E QHKND
+Q HKNDE
+H KNDEQ
+K NDEQH
+N EQHRK
+E QHRKN
+Q HRKNE
+H RKNEQ
+R KNEQH
+K NEQHR
+F VLIM
+V LIMF
+L IMFV
+I MFVL
+M FVLI
+H FY
+F YH
+Y HF
