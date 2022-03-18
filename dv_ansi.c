@@ -79,7 +79,7 @@ static void ask(char *term)
   lc[4] = FALSE;
   if (!cloutflag) {
     printf("filename for %s-output (return for terminal)  : ", term);
-    gets(outname);
+    Gets(outname);
   }
 }
 

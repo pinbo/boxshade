@@ -199,7 +199,7 @@ static void ask(BOOL makeEPS)
   if (!cloutflag) 
     do {
       printf("filename for POSTSCRIPT-output  : ");
-      gets(outname);
+      Gets(outname);
     } while (*outname == '\0');
 }
 
@@ -301,7 +301,7 @@ static void ps_date(void)
    time_t timer;
    struct tm *tblock;
 
-   /* gets time of day */
+   /* Gets time of day */
    timer = time(NULL);
 
    /* converts date/time to a structure */

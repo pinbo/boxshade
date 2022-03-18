@@ -126,7 +126,7 @@ static void ask_regis(void)
   lc[4] = FALSE;
   if (!cloutflag) {
     printf("filename for REGIS-output  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

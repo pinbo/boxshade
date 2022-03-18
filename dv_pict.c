@@ -201,7 +201,7 @@ static void ask_pict(void)
   }
   if (!cloutflag) {
     printf("filename for PICT file output  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 
@@ -240,7 +240,7 @@ static void PICTinit(double *xpos, double *ypos) {
 
   if (pictcell < 15) { xshift = 1; yshift = 2; }
 		else { xshift = 2; yshift = 3; }
-  /* as the size of the unit cell gets larger, the shift of the
+  /* as the size of the unit cell Gets larger, the shift of the
      character to place it nicely in the "box" changes; I haven't worked
      out a nice formula that gives integer values that work for any
      number of points */

@@ -268,7 +268,7 @@ static void ask_hpgl(void)
   }
   if (!cloutflag) {
     printf("filename for HPGL-output  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

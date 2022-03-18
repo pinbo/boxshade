@@ -158,7 +158,7 @@ static void Ask(void)
   if (!cloutflag) 
     do {
       printf("filename for HTML-output  : ");
-      gets(outname);
+      Gets(outname);
     } while (*outname == '\0');
 }
 

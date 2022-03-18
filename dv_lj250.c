@@ -81,7 +81,7 @@ static void ask_lj250(void)
   lc[4] = FALSE;
   if (!cloutflag) {
     printf("name of print-file  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

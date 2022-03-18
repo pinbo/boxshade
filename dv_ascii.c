@@ -71,7 +71,7 @@ static void ask_ascii(void)
   lc[4] = FALSE;
   if (!cloutflag) {
     printf("filename for ASCII-output (return for terminal)  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

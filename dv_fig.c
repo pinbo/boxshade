@@ -154,7 +154,7 @@ static void ask_fig(void)
   }
   if (!cloutflag) {
     printf("name of fig-file  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

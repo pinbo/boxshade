@@ -41,7 +41,7 @@ B2                                        globally conserved residues
 :POSTSCRIPT
 WB                                        normal residues
 BW                                        identical residues
-1B                                        similar residues
+1W                                        similar residues
 B2                                        globally conserved residues
 10                                        character size (in Pts.)
 n                                         landscape mode
@@ -54,9 +54,9 @@ BW                                        globally conserved residues
 
 :RTF
 WK                                        normal residues
-WR                                        identical residues
-WB                                        similar residues
-WM                                        globally conserved residues
+KW                                        identical residues
+DW                                        similar residues
+B2                                        globally conserved residues
 10                                        character size (in pts)
 
 :ANSI

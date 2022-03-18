@@ -551,6 +551,8 @@ static void ask(void)
     }
     if (indx(inname, ".phy") > 0 || indx(inname, ".PHY") > 0)
       inputmode = '5';
+    if (indx(inname, ".fa") > 0 )
+      inputmode = '6';
   }
   if (interactflag && !cltypeflag) {
     do {
@@ -558,17 +560,18 @@ static void ask(void)
 	     "                       (2) CLUSTAL .ALN file\n"
 	     "                       (3) MALIGNED data file\n"
 	     "                       (4) ESEE save file\n"
+         "                       (6) fasta file\n"
 	     "                       (5) PHYLIP file   (* %c *) : ",
 	     inputmode);
       Fgets(instring, 51, stdin);
       if (*instring == '\0')
 	sprintf(instring, "%c", inputmode);
-      if (indx("12345", instring) == 0) {
+      if (indx("123456", instring) == 0) {
 	printf(" \n");
 	printf("\007---> Please choose a supported type\n");
 	printf(" \n");
       }
-    } while (indx("12345", instring) <= 0);
+    } while (indx("123456", instring) <= 0);
   }
   printf(" \n");
   if (*instring != '\0')
@@ -1037,7 +1040,7 @@ static int aaset_idx[256];
 
 static void build_aaset_table(void) {
   int ch;
-  unsigned char *ap;
+  char *ap;
 
   for (ch = 0; ch < 256; ++ch)
     aaset_idx[ch] = -1;
@@ -1444,17 +1447,25 @@ static void graphics_out(void)
       seq[ruler_idx][i] = '.';
       col[ruler_idx][i] = 4;   /*set colour to predefined "title" type*/
     }
-    seq[ruler_idx][0] = '1';
+    // seq[ruler_idx][0] = '1';
     for (i=10; i <= consenslen; i+=10) {
       char no[20];
-      j=i-1;
-      do {
-	++j;
-	sprintf(no, "%d", j);
-	k = strlen(no);
-      } while ( ((j-1)%outlen)+k > outlen || j > consenslen);
-      if (j+k-1 <= consenslen && (j%10)+k < 9)
-	memcpy(&seq[ruler_idx][j-1], no, k);
+      j=i;
+      sprintf(no, "%d", j);
+      k = strlen(no);
+    //   j=i-1;
+    //   printf("start do loop\n");
+    //   do {
+    //     ++j;
+    //     sprintf(no, "%d", j);
+    //     k = strlen(no);
+    //   } while ( ((j-1)%outlen)+k > outlen || j > consenslen);
+    //   printf("end do loop\n");
+    //   printf("for ruler: i is %d, j is %d, k is %d, no is %s\n", i, j, k, no);
+    //   printf("for ruler: seq[ruler_idx] is %s\n", seq[ruler_idx]);
+    //   if (j+k-1 <= consenslen && (j%10)+k < 9)
+    //   if ((j%10)+k < 9)
+        memcpy(&seq[ruler_idx][j-k], no, k); // replaced j-1 with j-k
     }
     no_seq++;
   }
@@ -1681,6 +1692,11 @@ static void allocate2(void)
 int main(int argc, char **argv)
 {
   allocate1();
+  //JZ: to avoid the crazy init
+  if (argc < 5) {
+      explain_cl(NULL);
+      exit(0);
+  }
   process_command_line(argc, argv);
 
   ask();
@@ -1694,6 +1710,8 @@ int main(int argc, char **argv)
     case '4': read_file_esee();
 	      break;
     case '5': read_file_phylip();
+	      break;
+    case '6': read_fasta();
 	      break;
   }
 

@@ -12,6 +12,7 @@ extern void read_file_pretty(void);
 extern void read_file_maligned(void);
 extern void read_file_esee(void);
 extern void read_file_phylip(void);
+extern void read_fasta(); //JZ added
 
 #endif /*BX_READ_H*/
 

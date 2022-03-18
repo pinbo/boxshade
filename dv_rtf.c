@@ -127,7 +127,7 @@ static void ask_rtf(void)
   }
   if (!cloutflag) {
     printf("filename for RTF-output  : ");
-    gets(outname);
+    Gets(outname);
   }
 }
 

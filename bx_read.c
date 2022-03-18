@@ -4,7 +4,12 @@ FILE *infile = NULL;
 
 char *Gets(char *s) {
   fflush(stdout);
-  return gets(s);
+//   return Gets(s);
+  if (fgets(s, sizeof s, stdin)){
+    s[strcspn(s, "\n")] = '\0';
+     return s;
+  }
+  return NULL;
 }
 
 /*
@@ -169,6 +174,69 @@ void read_file_clustal(void)
   if (infile != NULL)
     fclose(infile);
   printf(" done\n");
+}
+
+// JZ added
+// need to get no_seq, 
+// for (i = 0; i < no_seq; i++)    seqlen[i] = 0;
+// strcpy(seqname[no_seq - 1], emptytag);
+// for (i = 0; i < taglen; i++)	seqname[no_seq-1][i] = nametag[i];    }
+// Fgets(line_, 256, parfile);
+
+
+void read_fasta()
+{
+	FILE * fp;
+	char * line = NULL;
+	size_t len = 0;
+	ssize_t read;
+
+    // delcred in the header file
+    no_seq = 0;
+    fp = fopen(inname, TXT_RD);
+    assert(fp != NULL);
+ 
+	int state = 0;
+    int linelen = 0;
+	while ((read = getline(&line, &len, fp)) != -1) {
+		/* Delete trailing newline */
+		if (line[read - 1] == '\n')
+			line[read - 1] = 0;
+		/* Handle comment lines*/
+		if (line[0] == '>') {
+            if (no_seq > 0) seqlen[no_seq - 1] = linelen;
+            linelen = 0;
+            no_seq ++; // number of sequences
+			if (state == 1)
+				printf("\n");
+            strcpy(seqname[no_seq - 1], line+1); // okay
+            printf("%s: ", seqname[no_seq - 1]);
+			state = 1;
+		} else {
+			/* Print everything else */
+			printf("%s", line);
+            // strcat(seq[no_seq - 1], line);
+            // seq[i][seqlen[i] + j - 1] = toupper(line_[seqstart + j - 2]);
+            int j = 0;
+            while (j < strlen(line)){
+                seq[no_seq - 1][linelen + j] = toupper(line[j]);
+                j++;
+            }
+            linelen += strlen(line);
+		}
+	}
+    seqlen[no_seq - 1] = linelen; // for the last sequence
+	printf("\n");
+    // for (int i = 0; i < no_seq; i++)  seqlen[i] = strlen(seq[i]);
+	fclose(fp);
+	if (line)
+		free(line);
+    // check
+    for (int i = 0; i < no_seq; i++){
+        printf("leng of seq %d is %d: \n", i, seqlen[i]);
+        printf("name of seq %d is %s: \n", i, seqname[i]);
+        printf("sequ of seq %d is %s: \n", i, seq[i]);
+    }
 }
 
 
