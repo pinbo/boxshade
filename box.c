@@ -1497,8 +1497,20 @@ static void graphics_out(void)
   lines_left = no_blocks * (no_seq + interlines) - interlines;
   graphics_init(&xpos, &ypos);
   linecount = 0;
+  // JZ add, to print ruler on the top
+  int newN[ no_seq ]; /* n is an array of 10 integers */
+  newN[0] = no_seq - 1;
+   /* initialize elements of array n to 0 */         
+  for ( i = 1; i < no_seq; i++ ) {
+    newN[ i ] = i - 1; /* set element at location i  */
+  }
+  // JZ end
   for (i = 0; i < no_blocks; i++) {
-    for (j = 0; j < no_seq; j++) {
+    int j2;
+    // for (j = 0; j < no_seq; j++) {
+    for (j2 = 0; j2 < no_seq; j2++) {
+      if (rulerflag) j = newN[j2];
+      else j = j2;
       if (seqnameflag) {
 	graphics_setcolor(4);   /*set colours to "title" type*/
 /*	for (k = 0; k < seqname_outlen; k++)
