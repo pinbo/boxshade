@@ -1745,12 +1745,6 @@ int main(int argc, char **argv)
     case '6': read_fasta();
 	      break;
   }
-  // JZ: init line numbers if def
-  if (numdefflag){
-    for (int i = 0; i < no_seq; i++) {
-      startno[i] = 1;
-    }
-  }
 
   if (seqnumflag && !numdefflag)
     ask_numbers();

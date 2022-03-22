@@ -226,6 +226,9 @@ void read_fasta()
 		}
 	}
     seqlen[no_seq - 1] = linelen; // for the last sequence
+    // init line start number
+    for (int i = 0; i < no_seq; i++)
+      startno[i] = 1;
 	// printf("\n");
     // for (int i = 0; i < no_seq; i++)  seqlen[i] = strlen(seq[i]);
 	fclose(fp);
