@@ -207,14 +207,14 @@ void read_fasta()
             if (no_seq > 0) seqlen[no_seq - 1] = linelen;
             linelen = 0;
             no_seq ++; // number of sequences
-			if (state == 1)
-				printf("\n");
+			// if (state == 1)
+			// 	printf("\n");
             strcpy(seqname[no_seq - 1], line+1); // okay
-            printf("%s: ", seqname[no_seq - 1]);
-			state = 1;
+            // printf("%s: ", seqname[no_seq - 1]);
+			// state = 1;
 		} else {
 			/* Print everything else */
-			printf("%s", line);
+			// printf("%s", line);
             // strcat(seq[no_seq - 1], line);
             // seq[i][seqlen[i] + j - 1] = toupper(line_[seqstart + j - 2]);
             int j = 0;
@@ -226,17 +226,17 @@ void read_fasta()
 		}
 	}
     seqlen[no_seq - 1] = linelen; // for the last sequence
-	printf("\n");
+	// printf("\n");
     // for (int i = 0; i < no_seq; i++)  seqlen[i] = strlen(seq[i]);
 	fclose(fp);
 	if (line)
 		free(line);
     // check
-    for (int i = 0; i < no_seq; i++){
-        printf("leng of seq %d is %d: \n", i, seqlen[i]);
-        printf("name of seq %d is %s: \n", i, seqname[i]);
-        printf("sequ of seq %d is %s: \n", i, seq[i]);
-    }
+    // for (int i = 0; i < no_seq; i++){
+    //     printf("leng of seq %d is %d: \n", i, seqlen[i]);
+    //     printf("name of seq %d is %s: \n", i, seqname[i]);
+    //     printf("sequ of seq %d is %s: \n", i, seq[i]);
+    // }
 }
 
 
