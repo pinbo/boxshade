@@ -202,6 +202,8 @@ void read_fasta()
 		/* Delete trailing newline */
 		if (line[read - 1] == '\n')
 			line[read - 1] = 0;
+        if (line[read - 2] == '\r')
+			line[read - 2] = 0;
 		/* Handle comment lines*/
 		if (line[0] == '>') {
             if (no_seq > 0) seqlen[no_seq - 1] = linelen;
