@@ -145,7 +145,7 @@ static void RTFinit(double *xpos, double *ypos) {
   uwriteln(&outfile, "{\\rtf1\\ansi\\deff0");
   uwriteln(&outfile, "{\\fonttbl{\\f0\\fmodern Courier New;}}");
   uwriteln(&outfile, "{\\info{\\author BOXSHADE}}");
-  uwriteln(&outfile, "{\\colortbl\n"
+  uwriteln(&outfile, "{\\colortbl;" // JZ change here, ; means 0 is the default, below will start from color 1
 		     "\\red0\\green0\\blue0;"
 		     "\\red255\\green255\\blue255;"
 		     "\\red255\\green0\\blue0;"
@@ -164,7 +164,7 @@ static void RTFinit(double *xpos, double *ypos) {
 static void RTFsetcolor(int colno) {
   uwriteln(&outfile, "");
   fprintf(outfile.f, "\\highlight%d\\cf%d ",
-		   rtfrec[colno].bgnd, rtfrec[colno].fgnd);
+		   rtfrec[colno].bgnd + 1, rtfrec[colno].fgnd + 1);
 }
 
 static void RTFcharout(char c, double *xpos, double *ypos) {
@@ -174,7 +174,7 @@ static void RTFcharout(char c, double *xpos, double *ypos) {
 
 static void RTFnewline(double *xpos, double *ypos) {
   uwriteln(&outfile, "\n\\highlight%d\\cf%d \\line",
-			 rtfrec[0].bgnd, rtfrec[0].fgnd);
+			 rtfrec[0].bgnd + 1, rtfrec[0].fgnd + 1);
   *xpos = dev_minx;
   *ypos -= dev_ysize;
 }
